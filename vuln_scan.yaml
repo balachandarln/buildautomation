@@ -1,0 +1,6 @@
+---
+- name: Execute local script on remote server
+  hosts: all
+  tasks:
+    - name: Run a script from the control node on the remote server
+      ansible.builtin.script: /home/ansibleuser/scan_script.sh
