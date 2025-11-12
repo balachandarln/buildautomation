@@ -3,7 +3,7 @@ variable "prefix" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "${var.prefix}-resources-balachandar-rg"
+  name     = "${var.prefix}-resources-balachandar2-rg"
   location = "South India"
 }
 
@@ -42,11 +42,11 @@ resource "azurerm_public_ip" "main" {
   sku                 = "Standard"
 }
 resource "azurerm_linux_virtual_machine" "main" {
-  name                            = "${var.prefix}-vm-balachandar"
+  name                            = "${var.prefix}-vm-balachandar2"
   location                        = azurerm_resource_group.example.location
   resource_group_name             = azurerm_resource_group.example.name
   size                            = "Standard_B1s"
-  admin_username                  = "docker"
+  admin_username                  = "azureuser"
   admin_password                  = "Docker@12345"
   disable_password_authentication = false
   network_interface_ids = [
