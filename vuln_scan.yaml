@@ -3,31 +3,4 @@
   hosts: all
   tasks:
     - name: Run a script from the control node on the remote server
-      ansible.builtin.script: - task: SSH@0
-  inputs:
-    runOptions: 'inline'
-    inline: |
-      #!/bin/bash
-       
-      # Define directories where your files are located within the repository
-      # Adjust these paths to match your actual folder structure
-      TF_DIR="/home/azureuser/terraform2"
-      ANSIBLE_DIR="/home/ansibleuser"
-      ANSIBLE_INVENTORY="hosts" # Name of your inventory file
-       
-      echo "Starting Terraform operations in $TF_DIR"
-       
-      # Navigate to the Terraform directory and run commands
-      cd "$TF_DIR"
-      terraform init
-      terraform plan -out=tfplan
-      terraform apply -auto-approve
-       
-      echo "Terraform operations completed. Starting Ansible operations in $ANSIBLE_DIR"
-       
-      # Navigate to the Ansible directory and run commands
-      cd "$ANSIBLE_DIR"
-      ansible-playbook all vuln_scan.yaml # Replace 'site.yml' with your playbook file name
-    interactiveSession: true
-    readyTimeout: '20000'
-    interactiveKeyboardAuthentication: true
+      ansible.builtin.script: /home/ansibleuser/scan_script.sh
