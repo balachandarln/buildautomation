@@ -1,4 +1,4 @@
 variable "ansible_pub_key" {
-  description = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDHO1eOlNtyMPNtl7IikXqd4Dy/LgWZBeD74aybaZuQSHB2kciH3g6DObfHfBTnLkfKG2wFJdUyaNzmbZ5iMrfxTiWNManihbwZirdX1tAcB2kxgwU0uyuvIyrLyJab7dgQ4dtfurDxBs3eLVuC7W5pGUtaqDmLrn/ypBbi3r+QIffj3yUj46frwYpdTEBuk8zrZ/IINlolsogFtuUxOh/Jdz8StKkDUqAuABsmJ7piQTF9mLMxLQ1F+R3PgOtWNIqy5gAOmDo5rnPb0clGMtDjcQM1Kt3YNMnGiD9gG6yxoojXmAOLe3qjip7Kx1QTVBju2igd064lNgroQQm1ty4xnlCh5tsMbXO90C1nK8RVOR0jvVIeDI9Z0CllLl7LkKDvTmhuqJsdFLN0Mgpw/IJ7yYJoFYc9wdkKq7ML6VCvqZVcbqzdmOnRuEA8vWIZrPUSe7qlpWEdOh84U5ld74LFWxScFbZWaOp4O1HkQRgJNbZIInhmtWeKi0bP/Wozick= ansibleuser@build-automation-vm"
+  description = "ssh-rsa ansibleuser@build-automation-vm"
   type        = string
 }
