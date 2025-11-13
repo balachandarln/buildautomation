@@ -52,6 +52,10 @@ resource "azurerm_linux_virtual_machine" "main" {
   network_interface_ids = [
     azurerm_network_interface.main.id
   ]
+  admin_ssh_key {
+    username   = "azureuser"
+    public_key = file("~/.ssh/id_rsa.pub")
+  }
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
@@ -62,16 +66,24 @@ resource "azurerm_linux_virtual_machine" "main" {
     offer     = "0001-com-ubuntu-server-jammy"
     version   = "latest"
   }
-
   custom_data = base64encode(<<EOF
-        #!/bin/bash
-        sudo apt-get update
-        sudo apt-get install -y software-properties-common
-        sudo add-apt-repository --yes --update ppa:ansible/ansible
-        sudo apt-get install -y ansible
-        sudo apt-get install -y ssh
-	sudo systemctl restart ssh
-	sudo systemctl enable ssh
+          #cloud-config
+  users:
+    - name: ansibleuser
+      groups: sudo
+      shell: /bin/bash
+      sudo: ALL=(ALL) NOPASSWD:ALL
+      ssh-authorized-keys:
+        - ${var.ansible_pub_key}
+  runcmd:
+   #!/bin/bash
+  	- sudo apt-get update
+  	- sudo apt-get install -y software-properties-common
+  	- sudo add-apt-repository --yes --update ppa:ansible/ansible
+  	- sudo apt-get install -y ansible
+  	- sudo apt-get install -y ssh
+  	- sudo systemctl restart ssh
+  	- sudo systemctl enable ssh
         EOF
   )
 }
