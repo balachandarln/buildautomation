@@ -54,7 +54,7 @@ resource "azurerm_linux_virtual_machine" "main" {
   ]
   admin_ssh_key {
     username   = "ansibleuser"
-    public_key = file("/home/ansibleuser/.ssh/id_rsa.pub")
+    public_key = var.ansible_pub_key
   }
   os_disk {
     caching              = "ReadWrite"
