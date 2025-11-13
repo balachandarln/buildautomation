@@ -46,15 +46,15 @@ resource "azurerm_linux_virtual_machine" "main" {
   location                        = azurerm_resource_group.example.location
   resource_group_name             = azurerm_resource_group.example.name
   size                            = "Standard_B1s"
-  admin_username                  = "azureuser"
+  admin_username                  = "ansibleuser"
   admin_password                  = "Docker@12345"
   disable_password_authentication = false
   network_interface_ids = [
     azurerm_network_interface.main.id
   ]
   admin_ssh_key {
-    username   = "azureuser"
-    public_key = file("~/.ssh/id_rsa.pub")
+    username   = "ansibleuser"
+    public_key = file("/home/ansibleuser/.ssh/id_rsa.pub")
   }
   os_disk {
     caching              = "ReadWrite"
