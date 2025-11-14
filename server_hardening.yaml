@@ -1,0 +1,19 @@
+---
+- name: Start nftables and print status
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure nftables service is started
+      service:
+        name: nftables
+        state: started
+        enabled: yes
+
+    - name: Get nftables service status
+      command: systemctl status nftables
+      register: nftables_status
+      changed_when: false
+
+    - name: Print nftables service status
+      debug:
+        var: nftables_status.stdout
